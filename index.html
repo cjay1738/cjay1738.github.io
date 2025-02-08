@@ -9,22 +9,61 @@
 
     <!-- Swiper.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    <style>
+        /* Custom Styles for Popup Menu */
+        .menu-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 100%;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            z-index: 1000;
+        }
+        .menu-popup a {
+            display: block;
+            padding: 15px 0;
+            font-size: 18px;
+            text-decoration: none;
+            color: #333;
+            transition: 0.3s;
+        }
+        .menu-popup a:hover {
+            color: #007BFF;
+        }
+    </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
 
     <!-- Navbar -->
-    <nav class="bg-blue-600 p-4 text-white text-center text-lg font-bold">
-        My Portfolio
+    <nav class="bg-blue-600 p-4 text-white flex justify-between items-center">
+        <span class="text-lg font-bold">My Portfolio</span>
+        <button onclick="toggleMenu()" class="text-white text-2xl focus:outline-none">
+            <i class="fas fa-bars"></i> <!-- Hamburger Icon -->
+        </button>
     </nav>
 
+    <!-- Popup Menu -->
+    <div id="menuPopup" class="menu-popup">
+        <button onclick="toggleMenu()" class="text-gray-600 text-2xl absolute top-4 right-4 focus:outline-none">
+            <i class="fas fa-times"></i> <!-- Close Icon -->
+        </button>
+        <a href="#about" onclick="toggleMenu()">About Me</a>
+        <a href="#projects" onclick="toggleMenu()">Projects</a>
+        <a href="#contact" onclick="toggleMenu()">Contact</a>
+    </div>
+
     <!-- Hero Section -->
-    <section class="text-center py-10">
+    <section id="about" class="text-center py-10">
         <h1 class="text-4xl font-bold">Hello, I'm <span class="text-blue-600">Christian Jay A. Malinao</span></h1>
         <p class="text-lg mt-2">An aspiring IT professional passionate about tech.</p>
     </section>
 
     <!-- Projects Section -->
-    <section class="max-w-4xl mx-auto p-4">
+    <section id="projects" class="max-w-4xl mx-auto p-4">
         <h2 class="text-2xl font-bold mb-4">Projects</h2>
 
         <!-- BloomingBuds Project with Swiper Slider -->
@@ -50,16 +89,10 @@
                 <div class="swiper-pagination"></div>
             </div>
         </div>
-
-        <!-- Project 2 (Without Slider) -->
-        <div class="bg-white shadow-lg p-4 rounded mt-4">
-            <h3 class="text-lg font-bold">Steven's Journey To The OSI Model</h3>
-            <p>A project about networking concepts.</p>
-        </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded mt-10">
+    <section id="contact" class="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded mt-10">
         <h2 class="text-2xl font-bold mb-4 text-center">Contact Me</h2>
         <form>
             <label class="block mb-2 font-semibold">Name:</label>
@@ -97,7 +130,7 @@
             loop: true,
             spaceBetween: 10,
             autoplay: {
-                delay: 3000, // Auto-slide every 3 seconds
+                delay: 3000,
                 disableOnInteraction: false,
             },
             navigation: {
@@ -109,6 +142,16 @@
                 clickable: true,
             },
         });
+
+        // Function to toggle menu popup
+        function toggleMenu() {
+            var menu = document.getElementById("menuPopup");
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        }
     </script>
 
 </body>
