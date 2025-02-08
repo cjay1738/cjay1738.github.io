@@ -6,6 +6,9 @@
     <title>My Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
 </head>
 <body class="bg-gray-100 text-gray-900">
 
@@ -23,15 +26,48 @@
     <!-- Projects Section -->
     <section class="max-w-4xl mx-auto p-4">
         <h2 class="text-2xl font-bold mb-4">Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="bg-white shadow-lg p-4 rounded">
-                <h3 class="text-lg font-bold">Project 1</h3>
-                <p>BloomingBuds.</p>
+
+        <!-- BloomingBuds Project with Swiper Slider -->
+        <div class="bg-white shadow-lg p-4 rounded">
+            <h3 class="text-lg font-bold">BloomingBuds</h3>
+            
+            <!-- Swiper Container -->
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="images/pic1.jpeg" alt="BloomingBuds 1" class="w-full rounded-lg">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/pic2.jpeg" alt="BloomingBuds 2" class="w-full rounded-lg">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/pic3.jpeg" alt="BloomingBuds 3" class="w-full rounded-lg">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                        <img src="images/pic4.jpeg" alt="BloomingBuds 1" class="w-full rounded-lg">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/pic5.jpeg" alt="BloomingBuds 2" class="w-full rounded-lg">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/pic6.jpeg" alt="BloomingBuds 3" class="w-full rounded-lg">
+                    </div>
+                </div>
+                
+                <!-- Navigation Buttons -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+
+                <!-- Pagination Dots -->
+                <div class="swiper-pagination"></div>
             </div>
-            <div class="bg-white shadow-lg p-4 rounded">
-                <h3 class="text-lg font-bold">Project 2</h3>
-                <p>Steven's Journey To The OSI Model.</p>
-            </div>
+        </div>
+
+        <!-- Project 2 (Without Slider) -->
+        <div class="bg-white shadow-lg p-4 rounded mt-4">
+            <h3 class="text-lg font-bold">Steven's Journey To The OSI Model</h3>
+            <p>A project about networking concepts.</p>
         </div>
     </section>
 
@@ -58,16 +94,35 @@
     <footer class="bg-blue-600 text-white text-center p-4 mt-10 flex flex-col md:flex-row items-center justify-center">
         <p class="mr-4">© 2025. All rights reserved.</p>
         <div class="flex space-x-4">
-            <!-- Facebook -->
             <a href="https://www.facebook.com/share/1Hi5cx9zYZ/" target="_blank" class="text-white text-xl hover:text-gray-300">
                 <i class="fab fa-facebook"></i>
             </a>
-            <!-- GitHub -->
             <a href="https://github.com/cjay1738" target="_blank" class="text-white text-xl hover:text-gray-300">
                 <i class="fab fa-github"></i>
             </a>
         </div>
     </footer>
+
+    <!-- Swiper.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            spaceBetween: 10,
+            autoplay: {
+                delay: 3000, // Auto-slide every 3 seconds
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+    </script>
 
 </body>
 </html>
