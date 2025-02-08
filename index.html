@@ -9,52 +9,13 @@
 
     <!-- Swiper.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
-    <style>
-        /* Popup Menu */
-        .menu-popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 250px;
-            height: 100%;
-            background: white;
-            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            z-index: 1000;
-        }
-        .menu-popup a {
-            display: block;
-            padding: 15px 0;
-            font-size: 18px;
-            text-decoration: none;
-            color: #333;
-            transition: 0.3s;
-        }
-        .menu-popup a:hover {
-            color: #007BFF;
-        }
-    </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
 
     <!-- Navbar -->
     <nav class="bg-blue-600 p-4 text-white flex justify-between items-center">
         <span class="text-lg md:text-xl font-bold">My Portfolio</span>
-        <button onclick="toggleMenu()" class="text-white text-2xl md:hidden focus:outline-none">
-            <i class="fas fa-bars"></i>
-        </button>
     </nav>
-
-    <!-- Popup Menu -->
-    <div id="menuPopup" class="menu-popup">
-        <button onclick="toggleMenu()" class="text-gray-600 text-2xl absolute top-4 right-4 focus:outline-none">
-            <i class="fas fa-times"></i>
-        </button>
-        <a href="#about" onclick="toggleMenu()">About Me</a>
-        <a href="#projects" onclick="toggleMenu()">Projects</a>
-        <a href="#contact" onclick="toggleMenu()">Contact</a>
-    </div>
 
     <!-- Hero Section -->
     <section id="about" class="text-center py-10 px-4">
@@ -91,18 +52,21 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section (Using FormSubmit) -->
     <section id="contact" class="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded mt-10">
         <h2 class="text-2xl md:text-3xl font-bold mb-4 text-center">Contact Me</h2>
-        <form>
+        <form action="https://formsubmit.co/christianjaymalinao1738@gmail.com" method="POST">
+            <input type="hidden" name="_next" value="https://cjay1738.github.io/thank-you.html">
+            <input type="hidden" name="_captcha" value="false">
+
             <label class="block mb-2 font-semibold">Name:</label>
-            <input type="text" class="w-full p-2 border rounded mb-4" placeholder="Your Name" required>
+            <input type="text" name="name" class="w-full p-2 border rounded mb-4" placeholder="Your Name" required>
 
             <label class="block mb-2 font-semibold">Email:</label>
-            <input type="email" class="w-full p-2 border rounded mb-4" placeholder="Your Email" required>
+            <input type="email" name="email" class="w-full p-2 border rounded mb-4" placeholder="Your Email" required>
 
             <label class="block mb-2 font-semibold">Message:</label>
-            <textarea class="w-full p-2 border rounded mb-4" rows="4" placeholder="Your Message" required></textarea>
+            <textarea name="message" class="w-full p-2 border rounded mb-4" rows="4" placeholder="Your Message" required></textarea>
 
             <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
                 Send Message
@@ -142,12 +106,6 @@
                 clickable: true,
             },
         });
-
-        // Function to toggle menu popup
-        function toggleMenu() {
-            var menu = document.getElementById("menuPopup");
-            menu.style.display = (menu.style.display === "block") ? "none" : "block";
-        }
     </script>
 
 </body>
