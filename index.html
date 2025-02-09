@@ -9,25 +9,57 @@
 
     <!-- Swiper.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    <style>
+        /* Popup Menu - Fixed position for proper opening/closing */
+        .menu-popup {
+            position: fixed;
+            top: 0;
+            right: -100%; /* Start hidden off-screen */
+            width: 250px;
+            height: 100%;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            z-index: 1000;
+            transition: right 0.3s ease-in-out; /* Smooth sliding effect */
+        }
+        .menu-popup.show {
+            right: 0; /* When active, slide into view */
+        }
+        .menu-popup a {
+            display: block;
+            padding: 15px 0;
+            font-size: 18px;
+            text-decoration: none;
+            color: #333;
+            transition: 0.3s;
+        }
+        .menu-popup a:hover {
+            color: #007BFF;
+        }
+        body.menu-open {
+            overflow: hidden; /* Prevent scrolling when menu is open */
+        }
+    </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
 
     <!-- Navbar -->
     <nav class="bg-blue-600 p-4 text-white flex justify-between items-center">
         <span class="text-lg md:text-xl font-bold">My Portfolio</span>
-        <button onclick="toggleMenu()" class="text-white text-2xl md:hidden focus:outline-none">
-            <i class="fas fa-bars"></i>
+        <button id="menuButton" class="text-white text-2xl md:hidden focus:outline-none">
+            <i class="fas fa-bars"></i> <!-- Hamburger Icon -->
         </button>
     </nav>
 
     <!-- Popup Menu -->
     <div id="menuPopup" class="menu-popup">
-        <button onclick="toggleMenu()" class="text-gray-600 text-2xl absolute top-4 right-4 focus:outline-none">
-            <i class="fas fa-times"></i>
+        <button id="closeMenu" class="text-gray-600 text-2xl absolute top-4 right-4 focus:outline-none">
+            <i class="fas fa-times"></i> <!-- Close Icon -->
         </button>
-        <a href="#about" onclick="toggleMenu()">About Me</a>
-        <a href="#projects" onclick="toggleMenu()">Projects</a>
-        <a href="#contact" onclick="toggleMenu()">Contact</a>
+        <a href="#about">About Me</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
     </div>
 
     <!-- Hero Section -->
@@ -65,7 +97,7 @@
         </div>
     </section>
 
-    <!-- Contact Section (Fixed Form with method="POST") -->
+    <!-- Contact Section -->
     <section id="contact" class="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded mt-10">
         <h2 class="text-2xl md:text-3xl font-bold mb-4 text-center">Contact Me</h2>
         <form action="https://formsubmit.co/eb7472988b9973460346157ee2f9bd41" method="POST">
@@ -95,17 +127,27 @@
     <!-- Swiper.js JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
-        function toggleMenu() {
-            var menu = document.getElementById("menuPopup");
-            menu.style.display = (menu.style.display === "block") ? "none" : "block";
-        }
+        // Hamburger Menu Functionality
+        const menuPopup = document.getElementById("menuPopup");
+        const menuButton = document.getElementById("menuButton");
+        const closeMenu = document.getElementById("closeMenu");
+
+        menuButton.addEventListener("click", function () {
+            menuPopup.classList.add("show");
+            document.body.classList.add("menu-open");
+        });
+
+        closeMenu.addEventListener("click", function () {
+            menuPopup.classList.remove("show");
+            document.body.classList.remove("menu-open");
+        });
 
         // Initialize Swiper
         var swiper = new Swiper(".mySwiper", {
             loop: true,
             spaceBetween: 10,
             autoplay: {
-                delay: 3000, // Auto-slide every 3 seconds
+                delay: 3000,
                 disableOnInteraction: false,
             },
             navigation: {
